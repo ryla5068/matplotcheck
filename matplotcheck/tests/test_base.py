@@ -1,6 +1,9 @@
 """Tests for the base module"""
 import pytest
 import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+from matplotcheck.base import PlotTester
 
 
 def test_line_plot(pt_line_plt):
@@ -57,3 +60,16 @@ def test_assert_xydata_geo(pd_gdf, pt_geo_plot):
     pt_geo_plot.assert_xydata(pd_gdf)
     plt.close()
 """
+
+
+def test_assert_line():
+    pd_df = pd.DataFrame({"A": np.arange(100), "B": np.arange(100, 200)})
+    fig, ax = plt.subplots()
+    pt_plt = pd_df.plot("A", "B", ax=ax, kind="scatter")
+    axis = plt.gca()
+
+    plot_tester = PlotTester(axis)
+
+    plot_tester.assert_line(1, 99)
+
+    plt.close()

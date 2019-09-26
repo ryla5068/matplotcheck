@@ -17,6 +17,8 @@ import pandas as pd
 import geopandas as gpd
 import datetime
 
+import pdb
+
 
 class InvalidPlotError(Exception):
     pass
@@ -825,8 +827,11 @@ class PlotTester(object):
         None :
             Nothing if line exists and covers dataset, otherwise throws ``AssertionError`` with message `m` or `m2`
         """
-        flag_exist, flag_length = False, False
-        xy = self.get_xy(points_only=True)
+        pdb.set_trace()
+        flag_exist = False
+        flag_length = False
+        # flag_exist, flag_length = False, False
+        xy = self.get_xy()
         min_val, max_val = min(xy["x"]), max(xy["x"])
 
         for l in self.ax.lines:
