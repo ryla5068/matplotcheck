@@ -828,10 +828,9 @@ class PlotTester(object):
             Nothing if line exists and covers dataset, otherwise throws ``AssertionError`` with message `m` or `m2`
         """
         pdb.set_trace()
-        flag_exist = False
-        flag_length = False
-        # flag_exist, flag_length = False, False
-        xy = self.get_xy()
+        flag_exist, flag_length = False, False
+        xy = self.get_xy(points_only=True)
+
         min_val, max_val = min(xy["x"]), max(xy["x"])
 
         for l in self.ax.lines:
